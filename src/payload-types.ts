@@ -159,7 +159,6 @@ export interface Page {
         blockName?: string | null;
         blockType: 'IFrame';
       }
-    | PoppyFormBlock
     | LinkBlock
     | ImageSliderBlock
     | {
@@ -174,26 +173,42 @@ export interface Page {
         blockType: 'testimonialsBlock';
       }
     | {
-        type: 'current' | 'future';
-        /**
-         * Maximum number of future hours to display
-         */
-        maxHoursToShow?: number | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'hoursBlock';
-      }
-    | {
         heading?: string | null;
-        displayType?: ('count' | 'specific') | null;
-        lettersCount?: number | null;
-        selectedLetters?: (number | Letter)[] | null;
+        subheading?: string | null;
+        items?:
+          | {
+              title: string;
+              description?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              image?: (number | null) | Media;
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                label?: string | null;
+                reference?: (number | null) | Page;
+                url?: string | null;
+                newTab?: boolean | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
         backgroundColor?: ('white' | 'lightGray' | 'brandPrimary') | null;
         id?: string | null;
         blockName?: string | null;
-        blockType: 'lettersBlock';
+        blockType: 'featuredSection';
       }
-    | BookingButton
   )[];
   meta?: {
     title?: string | null;
@@ -285,15 +300,6 @@ export interface MediaBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "PoppyFormBlock".
- */
-export interface PoppyFormBlock {
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'PoppyFormBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "linkBlock".
  */
 export interface LinkBlock {
@@ -360,42 +366,6 @@ export interface Testimonial {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "letters".
- */
-export interface Letter {
-  id: number;
-  senderName: string;
-  date?: string | null;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  featured?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "bookingButton".
- */
-export interface BookingButton {
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'bookingButton';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "hours".
  */
 export interface Hour {
@@ -438,6 +408,33 @@ export interface Hour {
    * Lower numbers appear first
    */
   sortOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "letters".
+ */
+export interface Letter {
+  id: number;
+  senderName: string;
+  date?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  featured?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -802,7 +799,6 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        PoppyFormBlock?: T | PoppyFormBlockSelect<T>;
         linkBlock?: T | LinkBlockSelect<T>;
         imageSlider?: T | ImageSliderBlockSelect<T>;
         testimonialsBlock?:
@@ -817,26 +813,32 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        hoursBlock?:
-          | T
-          | {
-              type?: T;
-              maxHoursToShow?: T;
-              id?: T;
-              blockName?: T;
-            };
-        lettersBlock?:
+        featuredSection?:
           | T
           | {
               heading?: T;
-              displayType?: T;
-              lettersCount?: T;
-              selectedLetters?: T;
+              subheading?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    image?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          reference?: T;
+                          url?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
               backgroundColor?: T;
               id?: T;
               blockName?: T;
             };
-        bookingButton?: T | BookingButtonSelect<T>;
       };
   meta?:
     | T
@@ -903,14 +905,6 @@ export interface MediaBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "PoppyFormBlock_select".
- */
-export interface PoppyFormBlockSelect<T extends boolean = true> {
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "linkBlock_select".
  */
 export interface LinkBlockSelect<T extends boolean = true> {
@@ -943,14 +937,6 @@ export interface ImageSliderBlockSelect<T extends boolean = true> {
         media?: T;
         id?: T;
       };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "bookingButton_select".
- */
-export interface BookingButtonSelect<T extends boolean = true> {
   id?: T;
   blockName?: T;
 }
@@ -1248,7 +1234,6 @@ export interface Footer {
             blockName?: string | null;
             blockType: 'IFrame';
           }
-        | PoppyFormBlock
         | LinkBlock
         | ImageSliderBlock
         | {
@@ -1370,7 +1355,6 @@ export interface FooterSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        PoppyFormBlock?: T | PoppyFormBlockSelect<T>;
         linkBlock?: T | LinkBlockSelect<T>;
         imageSlider?: T | ImageSliderBlockSelect<T>;
         testimonialsBlock?:

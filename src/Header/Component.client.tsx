@@ -4,9 +4,8 @@ import React, { useEffect, useState } from 'react'
 import type { Header, Media } from '@/payload-types'
 
 import { HeaderNav } from './Nav'
-import HeaderBookingButton from '@/components/HeaderBookingButton'
 import { MobileNav } from '@/Header/Nav/MobileNav'
-import { Menu,  XCircle} from 'lucide-react'
+import { Menu, XCircle } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -23,7 +22,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({
   header,
   logo,
   centerNav,
-  children
+  children,
 }) => {
   /* Storing the value in a useState to avoid hydration errors */
   const [theme] = useState<string | null>(null)
@@ -36,11 +35,11 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({
       setHasScrolled(false)
     }
   }
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   useEffect(() => {
-    setMobileNavIsOpen(false);
-  }, [pathname]);
+    setMobileNavIsOpen(false)
+  }, [pathname])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -50,7 +49,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({
   return (
     <>
       <div className="bg-brand-neutral-800 text-white">
-        <div className="container flex justify-between py-4 items-center">
+        <div className="container flex justify-between py-1 items-center">
           <Link href="/" className={`w-32 transition-all ${centerNav ? 'hidden' : ''}`}>
             <Image
               src={logo.url || ''}
@@ -61,32 +60,18 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({
               className="h-auto"
             />
           </Link>
-          <div className="hidden sm:block">
-            {children}
-          </div>
-          <div className="flex flex-col items-end mt-8 sm:mt-0">
-            <a
-              href="https://www.google.com/maps/dir/44.0696832,-103.2323072/Pioneer+Auto+Museum,+503+5th+St,+Murdo,+SD+57559/@43.9125794,-102.6291435,287119m/data=!3m2!1e3!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x877f7f4d7d226861:0xcee8415795af2762!2m2!1d-100.7066401!2d43.8863252?entry=ttu&g_ep=EgoyMDI1MDMyNS4xIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"
-              className="block text-base font-semibold hover:underline"
-            >
-              503 5th St, Murdo, SD 57559
-            </a>
-            <a href="tel:6056692691" className="block text-base font-semibold hover:underline mb-2">
-              (605) 669-2691
-            </a>
-            <HeaderBookingButton />
-          </div>
+          <div className="hidden sm:block">{children}</div>
+          <header
+            className={`hidden md:block sticky transition-colors top-0 z-50 ${!centerNav || hasScrolled ? 'bg-brand-neutral-700 text-white border-b border-blue-950' : ''}`}
+            {...(theme ? { 'data-theme': theme } : {})}
+          >
+            <div className="container relative z-20 py-2 flex justify-between text-3xl ">
+              <HeaderNav header={header} centerNav={centerNav} />
+            </div>
+          </header>
         </div>
       </div>
 
-      <header
-        className={`hidden md:block sticky transition-colors top-0 z-50 ${!centerNav || hasScrolled ? 'bg-brand-neutral-700 text-white border-b border-blue-950' : ''}`}
-        {...(theme ? { 'data-theme': theme } : {})}
-      >
-        <div className="container relative z-20 py-2 flex justify-between text-3xl ">
-          <HeaderNav header={header} centerNav={centerNav} />
-        </div>
-      </header>
       <header className={`md:hidden`}>
         <button
           onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)}

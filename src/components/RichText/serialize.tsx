@@ -4,7 +4,6 @@ import React, { Fragment, JSX } from 'react'
 import { CMSLink } from '@/components/Link'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { LinkBlock } from '@/blocks/LinkBlock/Component'
-import  Hours from '@/blocks/HoursBlock/HoursBlockComponent'
 import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
 
 import {
@@ -118,8 +117,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
           switch (blockType) {
             case 'content':
               return <ContentBlock key={index} {...block} />
-            case 'hoursBlock':
-              return <Hours key={index} {...block} />
             case 'linkBlock':
               return <LinkBlock key={index} {...block} />
             case 'mediaBlock':
@@ -174,7 +171,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                     aria-checked={node.checked ? 'true' : 'false'}
                     className={` ${node.checked ? '' : ''} ${alignment[node.format]}`}
                     key={index}
-                    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
                     role="checkbox"
                     tabIndex={-1}
                     value={node?.value}

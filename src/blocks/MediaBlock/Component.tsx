@@ -37,7 +37,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
   return (
     <div
       className={cn(
-        '',
+        'py-8',
         {
           container: position === 'default' && enableGutter,
         },
@@ -45,17 +45,23 @@ export const MediaBlock: React.FC<Props> = (props) => {
       )}
     >
       {position === 'fullscreen' && (
-        <div className="relative">
+        <div className="relative w-full">
           <Media resource={media} src={staticImage} />
         </div>
       )}
       {position === 'default' && (
-        <Media imgClassName={cn('rounded', imgClassName)} resource={media} src={staticImage} />
+        <div className="max-w-screen-xl mx-auto p-6">
+          <Media 
+            imgClassName={cn('rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300', imgClassName)} 
+            resource={media} 
+            src={staticImage} 
+          />
+        </div>
       )}
       {caption && (
         <div
           className={cn(
-            'mt-6',
+            'mt-8 max-w-screen-xl mx-auto px-6 text-center italic text-gray-600 text-lg',
             {
               container: position === 'fullscreen' && !disableInnerContainer,
             },

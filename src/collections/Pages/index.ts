@@ -5,7 +5,6 @@ import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
 import { Content } from '@/blocks/Content/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
 import { TestimonialBlock } from '@/blocks/Testimonials/config'
-import { HoursBlock } from '@/blocks/HoursBlock/HoursBlockConfig'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '@/hooks/populatePublishedAt'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
@@ -19,11 +18,9 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import IFrame from '@/blocks/IFrame/config'
-import { PoppyFormBlock } from '@/blocks/PoppyForm/config'
 import { LinkBlock } from '@/blocks/LinkBlock/config'
 import { ImageSliderBlock } from '@/blocks/ImageSliderBlock/config'
-import { LettersBlock } from '@/blocks/Letters/LettersBlockConfig'
-import { BookingButtonBlock } from '@/blocks/BookingButton/config'
+import { FeaturedSectionConfig } from '@/blocks/FeaturedSection/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -89,13 +86,10 @@ export const Pages: CollectionConfig = {
                 Content,
                 MediaBlock,
                 IFrame,
-                PoppyFormBlock,
                 LinkBlock,
                 ImageSliderBlock,
                 TestimonialBlock,
-                HoursBlock,
-                LettersBlock,
-                BookingButtonBlock,
+                FeaturedSectionConfig,
               ],
               required: true,
             },
