@@ -1,4 +1,6 @@
-import { Block } from 'payload/types'
+import { Block } from 'payload'
+import { Media } from '@/payload-types'
+
 
 export type FeaturedSectionType = {
   blockType: 'featuredSection'
@@ -9,18 +11,7 @@ export type FeaturedSectionType = {
     description?: {
       [k: string]: unknown
     }[]
-    image?: {
-      id: string
-      alt: string
-      filename: string
-      mimeType: string
-      filesize: number
-      width: number
-      height: number
-      createdAt: string
-      updatedAt: string
-      url: string
-    }
+    image?: Media
     link?: {
       type?: 'reference' | 'custom'
       label?: string

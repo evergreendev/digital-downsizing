@@ -39,7 +39,7 @@ const FeaturedSectionComponent: React.FC<FeaturedSectionType> = (props) => {
               {item.image && (
                 <div className="relative h-72 overflow-hidden">
                   <Media 
-                    resource={item.image} 
+                    resource={item.image}
                     imgClassName="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
