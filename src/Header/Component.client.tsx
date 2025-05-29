@@ -52,8 +52,8 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({
         <div className="container flex justify-between py-1 items-center">
           <Link href="/" className={`w-32 transition-all ${centerNav ? 'hidden' : ''}`}>
             <Image
-              src={logo.url || ''}
-              alt={logo.alt || 'Logo'}
+              src={logo?.url || ''}
+              alt={logo?.alt || 'Logo'}
               width={200}
               height={200}
               priority
