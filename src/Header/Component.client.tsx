@@ -59,7 +59,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({
           <div className="flex flex-col gap-2">
             <Link href="/" className={`w-32 transition-all ${centerNav ? 'hidden' : ''}`}>
               <Image
-                src={logo?.url || ''}
+                src={logo.url || ''}
                 alt={logo?.alt || 'Logo'}
                 width={200}
                 height={200}
