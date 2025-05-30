@@ -48,7 +48,6 @@ export const FeaturedSectionConfig: Block = {
       label: 'Featured Items',
       type: 'array',
       minRows: 1,
-      maxRows: 6,
       fields: [
         {
           name: 'title',
