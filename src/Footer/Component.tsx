@@ -27,7 +27,7 @@ export async function Footer() {
         loading="lazy"
         data-gtm-yt-inspected-10="true"
       ></iframe>
-      <div className="container prose-a:text-white py-8 gap-8 flex flex-col md:flex-row md:justify-between">
+      <div className="container prose-a:text-brand-accent-500 py-8 gap-8 flex flex-col md:flex-row md:justify-between">
         <div className="flex flex-col gap-4">
           {typeof siteLogo !== 'number' && (
             <Link className="flex items-center" href="/">
@@ -37,6 +37,7 @@ export async function Footer() {
           {navItems.map(({ link }, i) => {
             return <CMSLink className="text-xl" key={i} {...link} />
           })}
+
         </div>
 
 
