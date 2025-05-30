@@ -38,7 +38,7 @@ const FeaturedSectionComponent: React.FC<FeaturedSectionType> = (props) => {
           {items &&
             items.map((item, index) => (
               <Link className="group" key={index} {...item.link} href={item.link?.url || ''}>
-                <div className="bg-white border  border-brand-accent-800 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                <div className="bg-brand-accent-100/30 border  border-brand-accent-800 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
                   {item.image && (
                     <div className="relative h-72 overflow-hidden">
                       <Image
