@@ -49,23 +49,26 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({
   return (
     <>
       <div className="bg-brand-neutral-800 text-white">
-        <div className="container flex justify-between py-1 items-center gap-3">
-          <Link href="/" className={`w-32 transition-all ${centerNav ? 'hidden' : ''}`}>
-            <Image
-              src={logo?.url || ''}
-              alt={logo?.alt || 'Logo'}
-              width={200}
-              height={200}
-              priority
-              className="h-auto"
-            />
-          </Link>
-          <div className="text-brand-accent-600 flex gap-4 flex-wrap text-sm">
-            <a href="tel:605-431-1771">605-431-1771</a>
-            <a href="https://www.google.com/maps/dir//2040+W+Main+St+Ste+309,+Rapid+City,+SD+57702/@44.081651,-103.2947869,17894m/data=!3m1!1e3!4m9!4m8!1m0!1m5!1m1!1s0x877d5cb2190fffff:0x67e74a5d150efa2f!2m2!1d-103.2535877!2d44.0815967!3e0!5m1!1e1?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D">
-              2040 W Main St Ste #309 Rapid City, SD 57702
-            </a>
+        <div className="text-brand-accent-600 p-2 flex gap-4 flex-wrap text-sm sm:text-base w-full items-center justify-center bg-brand-neutral-500">
+          <a href="tel:605-431-1771">605-431-1771</a>
+          <a href="https://www.google.com/maps/dir//2040+W+Main+St+Ste+309,+Rapid+City,+SD+57702/@44.081651,-103.2947869,17894m/data=!3m1!1e3!4m9!4m8!1m0!1m5!1m1!1s0x877d5cb2190fffff:0x67e74a5d150efa2f!2m2!1d-103.2535877!2d44.0815967!3e0!5m1!1e1?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D">
+            2040 W Main St Ste #309 Rapid City, SD 57702
+          </a>
+        </div>
+        <div className="container flex flex-wrap justify-between py-1 items-center gap-3">
+          <div className="flex flex-col gap-2">
+            <Link href="/" className={`w-32 transition-all ${centerNav ? 'hidden' : ''}`}>
+              <Image
+                src={logo?.url || ''}
+                alt={logo?.alt || 'Logo'}
+                width={200}
+                height={200}
+                priority
+                className="h-auto"
+              />
+            </Link>
           </div>
+
           <div className="hidden sm:block">{children}</div>
           <header
             className={`hidden md:block sticky transition-colors top-0 z-50 ${!centerNav || hasScrolled ? 'bg-brand-neutral-700 text-white border-b border-blue-950' : ''}`}
