@@ -3,6 +3,7 @@ import RichText from '@/components/RichText'
 import { FeaturedSectionType } from './config'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Page } from '@/payload-types'
 
 const FeaturedSectionComponent: React.FC<FeaturedSectionType> = (props) => {
   const { heading, subheading, items, backgroundColor } = props
@@ -37,7 +38,16 @@ const FeaturedSectionComponent: React.FC<FeaturedSectionType> = (props) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
           {items &&
             items.map((item, index) => (
-              <Link className="group" key={index} {...item.link} href={item.link?.url || ''}>
+              <Link
+                className="group"
+                key={index}
+                {...item.link}
+                href={
+                  item.link?.type === 'reference'
+                    ? (item.link.reference as unknown as Page).slug || ''
+                    : item.link?.url || ''
+                }
+              >
                 <div className="bg-brand-accent-100/30 border  border-brand-accent-800 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
                   {item.image && (
                     <div className="relative h-72 overflow-hidden">
