@@ -45,7 +45,7 @@ const transporter = nodeMailer.createTransport({
 });
 
 const generateTitle: GenerateTitle<Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Pioneer Auto Show` : 'Pioneer Auto Show'
+  return doc?.title ? `${doc.title} | Digital Downsizing` : 'Digital Downsizing'
 }
 
 const generateURL: GenerateURL<Page> = ({ doc }) => {

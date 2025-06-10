@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
-  description:
-    'Offering family fun since 1954, Pioneer Auto Show in Murdo SD is a quintessential South Dakota Attraction along Interstate 90 and Highway 83.',
+  description: '',
   images: [
     {
       url: process.env.NEXT_PUBLIC_SERVER_URL
@@ -11,8 +10,8 @@ const defaultOpenGraph: Metadata['openGraph'] = {
         : '/pioneer-auto-show-logo.png',
     },
   ],
-  siteName: 'Pioneer Auto Show',
-  title: 'Pioneer Auto Show | South Dakota Attraction | Murdo SD',
+  siteName: 'Digital Downsizing',
+  title: 'Digital Downsizing',
 }
 
 export const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] => {
