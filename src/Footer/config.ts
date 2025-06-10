@@ -22,6 +22,17 @@ export const Footer: GlobalConfig = {
           required: false,
         },
     {
+      name: 'hoursTitle',
+      type: 'text',
+      label: 'Hours Title',
+      defaultValue: 'Hours of Operation',
+    },
+    {
+      name: 'hours',
+      type: 'richText',
+      label: 'Hours of Operation',
+    },
+    {
       name: 'navItems',
       type: 'array',
       fields: [
