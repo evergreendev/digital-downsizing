@@ -21,6 +21,7 @@ import IFrame from '@/blocks/IFrame/config'
 import { LinkBlock } from '@/blocks/LinkBlock/config'
 import { ImageSliderBlock } from '@/blocks/ImageSliderBlock/config'
 import { FeaturedSectionConfig } from '@/blocks/FeaturedSection/config'
+import { FormBlock } from '@/blocks/Form/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -87,6 +88,7 @@ export const Pages: CollectionConfig = {
                 MediaBlock,
                 IFrame,
                 LinkBlock,
+                FormBlock,
                 ImageSliderBlock,
                 TestimonialBlock,
                 FeaturedSectionConfig,
