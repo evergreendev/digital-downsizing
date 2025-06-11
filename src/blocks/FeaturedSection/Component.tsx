@@ -44,7 +44,7 @@ const FeaturedSectionComponent: React.FC<FeaturedSectionType> = (props) => {
                 {...item.link}
                 href={
                   item.link?.type === 'reference'
-                    ? (item.link.reference as unknown as Page).slug || ''
+                    ? (item.link.reference as unknown as Page)?.slug || ''
                     : item.link?.url || ''
                 }
               >
