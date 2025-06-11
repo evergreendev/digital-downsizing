@@ -51,6 +51,8 @@ export async function Footer() {
               <Image src={siteLogo?.url || ''} alt="Description" width={200} height={200} />
             </Link>
           )}
+        </div>
+        <div>
           {navItems.map(({ link }, i) => {
             return <CMSLink className="text-xl" key={i} {...link} />
           })}
