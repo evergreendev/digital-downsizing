@@ -8,6 +8,7 @@ import { postgresAdapter } from '@payloadcms/db-postgres'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 
 import {
   BoldFeature,
@@ -35,6 +36,7 @@ import { Letters } from '@/collections/LettersCollectionConfig'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+// This transporter is now replaced by the nodemailerAdapter
 const transporter = nodeMailer.createTransport({
   host: process.env.EMAIL_HOST,
   port: Number(process.env.EMAIL_PORT)||587,
@@ -43,6 +45,7 @@ const transporter = nodeMailer.createTransport({
     pass: process.env.EMAIL_PASSWORD,
   },
 });
+
 
 const generateTitle: GenerateTitle<Page> = ({ doc }) => {
   return doc?.title ? `${doc.title} | Digital Downsizing` : 'Digital Downsizing'
@@ -64,6 +67,11 @@ export default buildConfig({
   collections: [Users, Media,Pages, Testimonials, Hours, Letters],
   globals: [Header, Footer, SiteOptions],
   secret: process.env.PAYLOAD_SECRET || '',
+  email: nodemailerAdapter({
+    defaultFromAddress: 'noreply@custersd.egrmc.com',
+    defaultFromName: 'Digital Downsizing',
+    transport: transporter
+  }),
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
