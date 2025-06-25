@@ -4,6 +4,7 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import TestimonialsSliderWrapper from './TestimonialsSliderWrapper'
 import { Testimonial } from '@/payload-types'
+import { connection } from 'next/server'
 
 // Define props type
 type TestimonialsBlockProps = {
@@ -66,6 +67,9 @@ const TestimonialsBlockComponent = async (props: TestimonialsBlockProps) => {
     showAsCarousel,
     backgroundColor,
   } = props
+
+
+  await connection();
 
   const testimonials = await fetchTestimonials(displayType, testimonialsCount, selectedTestimonials)
 
