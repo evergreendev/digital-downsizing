@@ -104,7 +104,7 @@ const TestimonialsBlockComponent = async (props: TestimonialsBlockProps) => {
               {testimonials.map((testimonial) => (
                 <div
                   key={testimonial.id}
-                  className="bg-white text-gray-500 p-6 rounded-lg shadow-lg"
+                  className="bg-white text-gray-500 p-6 rounded-lg shadow-lg flex flex-col justify-center"
                 >
                   <div className="mb-4">
                     <RichText content={testimonial.testimonial} />
