@@ -6,8 +6,8 @@ const defaultOpenGraph: Metadata['openGraph'] = {
   images: [
     {
       url: process.env.NEXT_PUBLIC_SERVER_URL
-        ? `${process.env.NEXT_PUBLIC_SERVER_URL}/pioneer-auto-show-logo.png`
-        : '/pioneer-auto-show-logo.png',
+        ? `${process.env.NEXT_PUBLIC_SERVER_URL}/digital-downsizing-logo.png`
+        : '/digital-downsizing-logo.png',
     },
   ],
   siteName: 'Digital Downsizing',
