@@ -47,6 +47,7 @@ const Hero = ({ images }: HeroProps) => {
                 className={`absolute inset-0 duration-700 transition-opacity ${i === currImage ? 'opacity-100 z-0' : 'opacity-0 z-0'}`}
               >
                 <Image
+                  fetchPriority={'high'}
                   src={image.image.url || ''}
                   alt={image.image.alt || ''}
                   width={image.image.width || 0}
@@ -54,6 +55,7 @@ const Hero = ({ images }: HeroProps) => {
                   className={`z-10 absolute  h-full w-full  object-contain object-center`}
                 />
                 <Image
+                  fetchPriority={'high'}
                   src={image.image.url || ''}
                   alt={image.image.alt || ''}
                   width={image.image.width || 0}
